@@ -13,6 +13,8 @@ It combines neural network modeling, preprocessing, evaluation, and visualizatio
 - Dimensionality reduction using **PCA** for 2D visualization
 - Performance evaluation using confusion matrix and classification report
 
+---
+
 ## Table of Contents
 
 - [Project Overview](#project-overview)
@@ -27,8 +29,10 @@ It combines neural network modeling, preprocessing, evaluation, and visualizatio
 - [Model Details](#model-details)
 - [Results](#results)
 - [Output Visualizations](#output-visualizations)
+- [Repository Structure](#repository-structure)
 - [How to Run the Project](#how-to-run-the-project)
 - [Key Learnings](#key-learnings)
+- [Future Improvements](#future-improvements)
 - [Conclusion](#conclusion)
 
 ---
@@ -50,7 +54,7 @@ This project focuses on:
 - Building a multiclass classification model using **MLPClassifier**
 - Applying **ReLU activation** in the hidden layers
 - Using a **Pipeline** for clean preprocessing and model training
-- Evaluating model performance using accuracy, confusion matrix, and classification report
+- Evaluating the model performance using accuracy, confusion matrix, and classification report
 - Visualizing the dataset in 2D using **PCA**
 
 ---
@@ -83,21 +87,21 @@ The dataset is balanced and relatively simple, which makes it ideal for understa
 
 ### What is MLP?
 
-**MLP (Multi-Layer Perceptron)** is a type of artificial neural network made up of multiple layers of interconnected neurons. It typically includes an input layer, one or more hidden layers, and an output layer.
+**MLP (Multi-Layer Perceptron)** is a type of artificial neural network made up of multiple layers of interconnected neurons. It usually consists of an input layer, one or more hidden layers, and an output layer.
 
-An MLP learns complex patterns in data by applying weights, biases, and activation functions through these layers. Unlike simple linear models, MLP can capture nonlinear relationships, which makes it useful for many classification problems.
+An MLP learns complex relationships in data by adjusting weights and biases during training. Unlike basic linear models, it can capture nonlinear patterns, which makes it useful for classification tasks.
 
 ### Why ReLU Activation?
 
-**ReLU (Rectified Linear Unit)** is one of the most commonly used activation functions in neural networks. It returns the input directly if it is positive; otherwise, it returns zero.
+**ReLU (Rectified Linear Unit)** is one of the most widely used activation functions in neural networks. It returns the input directly if it is positive and returns zero otherwise.
 
-ReLU helps neural networks learn nonlinear patterns more efficiently and is computationally simple. It also reduces some of the training difficulties seen in older activation functions like sigmoid and tanh.
+ReLU helps neural networks learn nonlinear patterns efficiently and is computationally simple. It also avoids some of the training limitations often seen with older activation functions such as sigmoid and tanh.
 
 ### Why PCA?
 
-**PCA (Principal Component Analysis)** is a dimensionality reduction technique used to transform high-dimensional data into a smaller number of components while preserving as much variance as possible.
+**Principal Component Analysis (PCA)** is a dimensionality reduction technique that transforms high-dimensional data into a smaller set of components while preserving most of the variance.
 
-In this project, PCA is not used for training the model. Instead, it is used for **visualization**, so the four-dimensional Iris data can be represented in a two-dimensional plot. This helps in understanding class separation and data distribution.
+In this project, PCA is used for **visualization only**, not for model training. It helps represent the four-dimensional Iris dataset in a two-dimensional plot so class distribution can be understood more easily.
 
 ---
 
@@ -126,7 +130,7 @@ In this project, PCA is not used for training the model. Instead, it is used for
 
 ## Project Workflow
 
-The project follows a step-by-step machine learning workflow:
+The project follows a structured machine learning workflow:
 
 1. Import required libraries
 2. Load the Iris dataset
@@ -137,10 +141,10 @@ The project follows a step-by-step machine learning workflow:
 7. Build an MLP pipeline using `StandardScaler` and `MLPClassifier`
 8. Train the model
 9. Evaluate predictions using classification metrics
-10. Apply PCA to reduce data into 2 dimensions
-11. Visualize class distribution in PCA space
+10. Apply PCA to reduce the dataset into 2 dimensions
+11. Visualize the data in PCA space
 
-This structured workflow makes the notebook easy to understand and suitable for learning as well as portfolio presentation.
+This step-by-step structure makes the project easy to understand and suitable for learning as well as portfolio presentation.
 
 ---
 
@@ -158,7 +162,7 @@ The classification model is built using **MLPClassifier** inside a scikit-learn 
 
 ### Why use Pipeline?
 
-A Pipeline helps combine preprocessing and modeling into a single clean workflow. In this project, `StandardScaler` standardizes the features before they are passed to the neural network.
+A Pipeline combines preprocessing and modeling into a single clean workflow. In this project, `StandardScaler` standardizes the features before they are passed to the neural network.
 
 This is especially important for neural networks because feature scaling helps training become more stable and effective.
 
@@ -166,8 +170,7 @@ This is especially important for neural networks because feature scaling helps t
 
 ## Results
 
-The trained MLP model achieved strong classification performance on the test set.  
-The confusion matrix shows correct predictions across all three Iris classes in this run, indicating that the model learned the class patterns effectively.
+The trained MLP model produced strong classification performance on the Iris test set.
 
 ### Evaluation Methods Used
 
@@ -175,36 +178,39 @@ The confusion matrix shows correct predictions across all three Iris classes in 
 - Confusion matrix
 - Classification report
 
-The model correctly classified the Iris flower species with high performance, and the confusion matrix shows that predictions were very accurate for all three classes.
+### Result Summary
+
+- The confusion matrix shows correct predictions across all three Iris classes in the displayed output
+- The model performs especially well because the Iris dataset is clean, balanced, and well-separated for learning
 
 ---
 
 ## Output Visualizations
 
-### Confusion Matrix
+### 1. Confusion Matrix
 
-The confusion matrix provides a class-wise view of prediction performance. It helps show whether the model is confusing one class with another.
+![Confusion Matrix](Output_images/Confusion-Matrix-MLP.jpg)
 
-![Confusion Matrix](Output_images/Confusion Matrix (MLP).png)
+This plot provides a class-wise view of prediction performance and helps identify whether the model is confusing one class with another.
 
-### PCA Visualization
+### 2. PCA Visualization
 
-The PCA scatter plot projects the four-dimensional dataset into two principal components. This allows us to visually observe how the three classes are distributed.
+![PCA Visualization](Output_images/PCA-visualization-of-Iris-Dataset.jpg)
 
-![PCA Visualization](Output_images/PCA visualization of Iris Dataset.png)
+This scatter plot projects the four-dimensional Iris dataset into two principal components.
 
 ### Interpretation of PCA Plot
 
 - **Setosa** appears clearly separated from the other two classes
-- **Versicolor** and **Virginica** show some overlap
-- This visual pattern helps explain why classification between some classes can be more challenging than others in general
+- **Versicolor** and **Virginica** show partial overlap
+- This visual pattern helps explain why some classes are generally easier to separate than others
 
 ---
 
 ## Repository Structure
 
-- `Neural Network - MLP on Iris with PCA visualization and Pipeline.ipynb` — main notebook
-- `Output_images/` — saved output plots used in the README
+- `Neural-Network-MLP-on-Iris-with-PCA-visualization-and-Pipeline.ipynb` — main project notebook
+- `Output_images/` — saved output images used in the README
 - `README.md` — project documentation
 
 ---
@@ -247,7 +253,7 @@ This project helped strengthen understanding of:
 
 - Neural network-based classification using **MLPClassifier**
 - The role of **ReLU activation** in learning nonlinear patterns
-- The importance of **feature scaling** in machine learning pipelines
+- The importance of **feature scaling** in machine learning workflows
 - Clean preprocessing and modeling using **Pipeline**
 - Model evaluation using confusion matrix and classification report
 - Visual interpretation of high-dimensional data using **PCA**
@@ -256,9 +262,10 @@ This project helped strengthen understanding of:
 
 ## Future Improvements
 
-- Compare MLP with Logistic Regression or SVM
-- Tune hidden layers and hyperparameters
-- Apply the same workflow to a more complex dataset
+- Compare MLP performance with Logistic Regression, SVM, or Decision Tree models
+- Tune hidden layers and other hyperparameters
+- Apply the same workflow to a more complex multiclass dataset
+- Add cross-validation for more robust model evaluation
 
 ---
 
