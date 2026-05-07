@@ -178,7 +178,9 @@ Using a **Pipeline** ensures that feature scaling and model training happen in o
 
 The confusion matrix shows that the model performs very strongly on the test data.
 
-![Confusion Matrix](Output_images/Confusion Matrix of MLP.png)
+<p align="center">
+  <img src="Output_images/Confusion%20Matrix%20of%20MLP.png" alt="Confusion Matrix for MLP on Iris Dataset" width="420"/>
+</p>
 
 This indicates that the MLP classifier was able to correctly distinguish the three Iris species with excellent accuracy in this experiment.
 
@@ -186,7 +188,10 @@ This indicates that the MLP classifier was able to correctly distinguish the thr
 
 The PCA scatter plot projects the dataset into two principal components for visual understanding.
 
-![PCA Visualization](Output_images/PCA visualization of Iris Dataset.png)
+<p align="center">
+  <img src="Output_images/PCA%20visualization%20of%20Iris%20Dataset.png" alt="PCA Visualization of Iris Dataset" width="420"/>
+</p>
+
 
 ### Quick Interpretation
 
