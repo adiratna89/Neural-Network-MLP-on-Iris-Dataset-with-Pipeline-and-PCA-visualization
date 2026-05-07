@@ -26,16 +26,25 @@
 
 ## ✨ Visual Story of the Project
 
-<p align="center">
-  <img src="Output_images/PCA visualization of Iris Dataset.png" alt="PCA Visualization of Iris Dataset" width="45%">
-  <img src="Output_images/Confusion Matrix of MLP.png" alt="Confusion Matrix for MLP on Iris Dataset" width="45%">
-</p>
+<table>
+  <tr>
+    <td align="center">
+      <img src="Output_images/PCA%20visualization%20of%20Iris%20Dataset.png" alt="PCA Visualization of Iris Dataset" width="400"/>
+    </td>
+    <td align="center">
+      <img src="Output_images/Confusion%20Matrix%20of%20MLP.png" alt="Confusion Matrix for MLP on Iris Dataset" width="400"/>
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><b>PCA Visualization</b></td>
+    <td align="center"><b>Confusion Matrix</b></td>
+  </tr>
+</table>
 
-<p align="center">
-  <b>From 4-dimensional flower measurements ➜ neural network classification ➜ 2D PCA intuition.</b>
-</p>
+From 4-dimensional flower measurements ➜ neural network classification ➜ 2D PCA intuition.
 
 These visual outputs show both sides of the project:
+
 - **PCA scatter plot** gives an intuitive view of class distribution in reduced dimensions.
 - **Confusion matrix** shows how accurately the MLP model classified the three Iris species.
 
@@ -242,7 +251,7 @@ source venv/bin/activate
 ### 3️⃣ Install dependencies
 
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn
+pip install numpy pandas matplotlib seaborn scikit-learn notebook
 ```
 
 ### 4️⃣ Launch Jupyter Notebook
@@ -253,23 +262,22 @@ jupyter notebook
 
 Then open:
 
-```text
-Neural-Network-MLP-on-Iris-with-PCA-visualization-and-Pipeline.ipynb
+```bash
+Neural Network - MLP on Iris with PCA visualization and Pipeline.ipynb
 ```
 
 ---
 
 ## 📁 Repository Structure
 
-```text
+```bash
 Neural-Network-MLP-on-Iris-Dataset-with-Pipeline-and-PCA-visualization/
 │
-├── Neural-Network-MLP-on-Iris-with-PCA-visualization-and-Pipeline.ipynb
+├── Neural Network - MLP on Iris with PCA visualization and Pipeline.ipynb
 ├── README.md
-├── LICENSE
 └── Output_images/
-    ├── Confusion-Matrix-MLP.jpg
-    └── PCA-visualization-of-Iris-Dataset.jpg
+    ├── Confusion Matrix of MLP.png
+    └── PCA visualization of Iris Dataset.png
 ```
 
 This keeps the notebook, documentation, and output visuals clean and easy to navigate.
