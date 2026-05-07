@@ -1,276 +1,198 @@
-# Neural Network (MLP) on Iris Dataset with Pipeline and PCA Visualization
+# Neural Network (MLP) on Iris Dataset – Pipeline + PCA 🌸
 
-This project demonstrates multiclass classification on the famous Iris dataset using a **Multi-Layer Perceptron (MLP)** model with **ReLU activation**, combined with a **scikit-learn Pipeline** for preprocessing and **Principal Component Analysis (PCA)** for 2D visualization.
+Multiclass classification of Iris flowers using a **Multi-Layer Perceptron (MLP)** with **ReLU activation**, wrapped in a clean **scikit‑learn Pipeline** and supported by **PCA visualization** for better intuition.
 
-It combines neural network modeling, preprocessing, evaluation, and visualization in a clean end-to-end machine learning workflow.
-
----
-
-## Project Highlights
-
-- Multiclass classification using **MLP Classifier**
-- Feature scaling with **StandardScaler** inside a **Pipeline**
-- Dimensionality reduction using **PCA** for 2D visualization
-- Performance evaluation using confusion matrix and classification report
+This mini project continues my series of well-documented ML notebooks, focusing on neural networks plus dimensionality reduction on a classic dataset.
 
 ---
 
-## Table of Contents
+## 🔍 Visual Story
 
-- [Project Overview](#project-overview)
-- [Objective](#objective)
-- [About the Dataset](#about-the-dataset)
-- [Theory Background](#theory-background)
-  - [What is MLP?](#what-is-mlp)
-  - [Why ReLU Activation?](#why-relu-activation)
-  - [Why PCA?](#why-pca)
-- [Tools and Libraries Used](#tools-and-libraries-used)
-- [Project Workflow](#project-workflow)
-- [Model Details](#model-details)
-- [Results](#results)
-- [Output Visualizations](#output-visualizations)
-- [Repository Structure](#repository-structure)
-- [How to Run the Project](#how-to-run-the-project)
-- [Key Learnings](#key-learnings)
-- [Future Improvements](#future-improvements)
-- [Conclusion](#conclusion)
+A quick look at what this project does.
+
+<p align="center">
+  <img src="Output_images/PCA-visualization-of-Iris-Dataset.jpg" alt="PCA visualization of Iris dataset" width="48%">
+  <img src="Output_images/Confusion-Matrix-MLP.jpg" alt="Confusion Matrix of MLP model" width="48%">
+</p>
+
+These visuals show:
+- How the three Iris species separate in 2D PCA space.
+- How well the MLP classifier performs on the test set via the confusion matrix.
 
 ---
 
-## Project Overview
+## 📘 What this project demonstrates
 
-The Iris dataset is one of the most well-known datasets in machine learning and is commonly used to demonstrate classification techniques. In this project, an MLP neural network is trained to classify iris flowers into three species based on four numerical input features.
-
-To make the workflow more robust and professional, feature scaling is handled through a **Pipeline** using `StandardScaler`, while **PCA** is used to reduce the dataset into two principal components for visualization.
-
----
-
-## Objective
-
-The main objective of this project is to classify Iris flower species using a neural network model and to understand the dataset visually through dimensionality reduction.
-
-This project focuses on:
-
-- Building a multiclass classification model using **MLPClassifier**
-- Applying **ReLU activation** in the hidden layers
-- Using a **Pipeline** for clean preprocessing and model training
-- Evaluating the model performance using accuracy, confusion matrix, and classification report
-- Visualizing the dataset in 2D using **PCA**
+- Building a **neural network classifier (MLPClassifier)** for a **3‑class problem**.
+- Using **ReLU** in hidden layers for non‑linear decision boundaries.
+- Plugging preprocessing + model into a **scikit‑learn Pipeline** with `StandardScaler`.
+- Evaluating performance using **accuracy**, **confusion matrix**, and **classification report**.
+- Applying **PCA** for 2D visualization of the 4‑dimensional Iris dataset.
 
 ---
 
-## About the Dataset
+## 📂 Project Overview
 
-The Iris dataset is a classic multiclass classification dataset available in `sklearn.datasets`.
-
-### Dataset Information
-
-- Total samples: **150**
-- Total features: **4 numerical features**
-- Total target classes: **3**
-  - Setosa
-  - Versicolor
-  - Virginica
-
-### Input Features
-
-- Sepal length
-- Sepal width
-- Petal length
-- Petal width
-
-The dataset is balanced and relatively simple, which makes it ideal for understanding machine learning workflows and model behavior.
+- Problem type: **Multiclass classification** (Setosa, Versicolor, Virginica).
+- Algorithm: **Multi‑Layer Perceptron (MLP)** neural network.
+- Input features: Four numeric features from the Iris dataset.
+- Preprocessing: Train‑test split + feature scaling using `StandardScaler` in a Pipeline.
+- Extras: PCA scatter plot to visually understand how classes are separated.
 
 ---
 
-## Theory Background
+## 🌱 Dataset – Iris Flower Dataset
 
-### What is MLP?
-
-**MLP (Multi-Layer Perceptron)** is a type of artificial neural network made up of multiple layers of interconnected neurons. It usually consists of an input layer, one or more hidden layers, and an output layer.
-
-An MLP learns complex relationships in data by adjusting weights and biases during training. Unlike basic linear models, it can capture nonlinear patterns, which makes it useful for classification tasks.
-
-### Why ReLU Activation?
-
-**ReLU (Rectified Linear Unit)** is one of the most widely used activation functions in neural networks. It returns the input directly if it is positive and returns zero otherwise.
-
-ReLU helps neural networks learn nonlinear patterns efficiently and is computationally simple. It also avoids some of the training limitations often seen with older activation functions such as sigmoid and tanh.
-
-### Why PCA?
-
-**Principal Component Analysis (PCA)** is a dimensionality reduction technique that transforms high-dimensional data into a smaller set of components while preserving most of the variance.
-
-In this project, PCA is used for **visualization only**, not for model training. It helps represent the four-dimensional Iris dataset in a two-dimensional plot so class distribution can be understood more easily.
+- Features: **Sepal length**, **sepal width**, **petal length**, **petal width**.
+- Target classes: **Setosa**, **Versicolor**, **Virginica**.
+- Samples: **150** total (50 per class).
+- Source: Available directly from `sklearn.datasets.load_iris()`.
 
 ---
 
-## Tools and Libraries Used
+## 🧠 Intuition: MLP, ReLU and PCA (Short Theory)
 
-- **Python**
-- **Pandas**
-- **NumPy**
-- **Matplotlib**
-- **Seaborn**
-- **Scikit-learn**
+### Multi-Layer Perceptron (MLP)
 
-### Scikit-learn Components Used
+An **MLP** is a feed‑forward neural network made of layers of neurons:  
+input layer → one or more **hidden layers** → output layer.  
+Each neuron takes a weighted sum of inputs, adds a bias and passes it through an activation function.  
+Because of the hidden layers, MLPs can learn **non‑linear relationships** that simple linear models cannot capture.
 
-- `load_iris`
-- `train_test_split`
-- `StandardScaler`
-- `Pipeline`
-- `MLPClassifier`
-- `accuracy_score`
-- `confusion_matrix`
-- `classification_report`
-- `PCA`
+### Why ReLU?
 
----
+**ReLU (Rectified Linear Unit)** is defined as:
 
-## Project Workflow
+\[
+\text{ReLU}(x) = \max(0, x)
+\]
 
-The project follows a structured machine learning workflow:
+It keeps positive values as they are and clips negative values to zero.  
+ReLU is very popular because it is simple, helps gradients flow better during training compared to sigmoid/tanh, and often leads to **faster and more stable training** in deeper networks.
 
-1. Import required libraries
-2. Load the Iris dataset
-3. Define features and target
-4. Create a DataFrame for inspection
-5. Perform basic exploratory data analysis
-6. Split the dataset into training and testing sets
-7. Build an MLP pipeline using `StandardScaler` and `MLPClassifier`
-8. Train the model
-9. Evaluate predictions using classification metrics
-10. Apply PCA to reduce the dataset into 2 dimensions
-11. Visualize the data in PCA space
+### Why PCA in this project?
 
-This step-by-step structure makes the project easy to understand and suitable for learning as well as portfolio presentation.
+**PCA (Principal Component Analysis)** is a dimensionality reduction technique that finds new axes (principal components) which capture the maximum variance in the data.  
+Here, PCA is used **only for visualization**: the 4‑dimensional Iris features are projected into 2 principal components so that all samples can be plotted in a single 2D scatter plot.  
+This makes it easy to see which classes are well separated and where there is overlap between species.
 
 ---
 
-## Model Details
+## 🧮 Notebook Workflow
 
-The classification model is built using **MLPClassifier** inside a scikit-learn Pipeline.
+Main notebook:
 
-### Model Configuration
+- `Neural-Network-MLP-on-Iris-with-PCA-visualization-and-Pipeline.ipynb`
 
-- Hidden layer sizes: **(10, 5)**
-- Activation function: **ReLU**
-- Solver: **Adam**
-- Maximum iterations: **1000**
-- Random state: **42**
+Inside the notebook you will find:
 
-### Why use Pipeline?
+1. **Introduction & Objective**  
+   - Brief problem statement and project goal.
 
-A Pipeline combines preprocessing and modeling into a single clean workflow. In this project, `StandardScaler` standardizes the features before they are passed to the neural network.
+2. **Data Loading & Exploration**  
+   - Load Iris dataset using scikit‑learn.  
+   - Create a pandas DataFrame and inspect features and target distribution.
 
-This is especially important for neural networks because feature scaling helps training become more stable and effective.
+3. **Train–Test Split & Pipeline Setup**  
+   - Split data into training and testing subsets.  
+   - Build a Pipeline with `StandardScaler` + `MLPClassifier`.
 
----
+4. **MLP Model Training**  
+   - Configure hidden layers, activation, solver and max iterations.  
+   - Fit the Pipeline on training data.
 
-## Results
+5. **Evaluation**  
+   - Predict on test set.  
+   - Calculate accuracy.  
+   - Generate confusion matrix and classification report.
 
-The trained MLP model produced strong classification performance on the Iris test set.
+6. **PCA Visualization**  
+   - Apply PCA to the original features (2 components).  
+   - Plot samples in PC1–PC2 space colored by class.
 
-### Evaluation Methods Used
-
-- Accuracy score
-- Confusion matrix
-- Classification report
-
-### Result Summary
-
-- The confusion matrix shows correct predictions across all three Iris classes in the displayed output
-- The model performs especially well because the Iris dataset is clean, balanced, and well-separated for learning
-
----
-
-## Output Visualizations
-
-### 1. Confusion Matrix
-
-![Confusion Matrix](Output_images/Confusion-Matrix-MLP.jpg)
-
-This plot provides a class-wise view of prediction performance and helps identify whether the model is confusing one class with another.
-
-### 2. PCA Visualization
-
-![PCA Visualization](Output_images/PCA-visualization-of-Iris-Dataset.jpg)
-
-This scatter plot projects the four-dimensional Iris dataset into two principal components.
-
-### Interpretation of PCA Plot
-
-- **Setosa** appears clearly separated from the other two classes
-- **Versicolor** and **Virginica** show partial overlap
-- This visual pattern helps explain why some classes are generally easier to separate than others
+7. **Insights & Summary**  
+   - Short interpretation of performance and PCA plot.
 
 ---
 
-## Repository Structure
+## 📈 Model Setup & Performance
 
-- `Neural-Network-MLP-on-Iris-with-PCA-visualization-and-Pipeline.ipynb` — main project notebook
-- `Output_images/` — saved output images used in the README
-- `README.md` — project documentation
+- Hidden layer sizes: `(10, 5)`  
+- Activation: **ReLU**  
+- Solver: **Adam**  
+- Max iterations: **1000**  
+- Random state: **42**  
+
+The model achieves strong performance on the test set (see confusion matrix above), correctly classifying the Iris species for this small, well‑separated dataset.
 
 ---
 
-## How to Run the Project
+## 🧩 What I practiced in this project
 
-### 1. Clone the repository
+- Designing a **neural network classifier** for a small, clean dataset.  
+- Using **scikit‑learn Pipelines** to keep preprocessing and modeling together.  
+- Understanding how **feature scaling** affects neural networks.  
+- Combining **ML models with visual explanations** using PCA and confusion matrices.  
+- Writing a consistent, GitHub‑ready README to document ML mini projects.
+
+---
+
+## ⚙️ How to run this notebook
+
+1. **Clone the repository**
 
 ```bash
 git clone https://github.com/adiratna89/Neural-Network-MLP-on-Iris-Dataset-with-Pipeline-and-PCA-visualization.git
-```
-
-### 2. Open the project folder
-
-```bash
 cd Neural-Network-MLP-on-Iris-Dataset-with-Pipeline-and-PCA-visualization
 ```
 
-### 3. Install required libraries
+2. **(Optional) Create and activate a virtual environment**
+
+3. **Install required libraries**
 
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn notebook
+pip install numpy pandas matplotlib seaborn scikit-learn
 ```
 
-### 4. Launch Jupyter Notebook
+4. **Open the notebook**
 
 ```bash
-jupyter notebook
+jupyter notebook "Neural-Network-MLP-on-Iris-with-PCA-visualization-and-Pipeline.ipynb"
 ```
 
-### 5. Open and run the notebook
-
-Open the notebook file and run all cells step by step.
+5. Run the cells step by step to reproduce the results and plots.
 
 ---
 
-## Key Learnings
+## 📁 Repository Structure
 
-This project helped strengthen understanding of:
+```text
+Neural-Network-MLP-on-Iris-Dataset-with-Pipeline-and-PCA-visualization/
+│
+├── Neural-Network-MLP-on-Iris-with-PCA-visualization-and-Pipeline.ipynb
+├── README.md
+├── LICENSE
+└── Output_images/
+    ├── Confusion-Matrix-MLP.jpg
+    └── PCA-visualization-of-Iris-Dataset.jpg
+```
 
-- Neural network-based classification using **MLPClassifier**
-- The role of **ReLU activation** in learning nonlinear patterns
-- The importance of **feature scaling** in machine learning workflows
-- Clean preprocessing and modeling using **Pipeline**
-- Model evaluation using confusion matrix and classification report
-- Visual interpretation of high-dimensional data using **PCA**
-
----
-
-## Future Improvements
-
-- Compare MLP performance with Logistic Regression, SVM, or Decision Tree models
-- Tune hidden layers and other hyperparameters
-- Apply the same workflow to a more complex multiclass dataset
-- Add cross-validation for more robust model evaluation
+This structure keeps the notebook, documentation and output images organized and easy to explore.
 
 ---
 
-## Conclusion
+## 👤 Author
 
-This project presents a complete and beginner-friendly machine learning workflow using the Iris dataset. By combining **MLP**, **ReLU**, **Pipeline**, and **PCA**, it demonstrates not only model training and evaluation but also how visualization can improve understanding of the dataset.
+**Adiratna Kamble**
 
-Overall, this mini-project is a strong example of applying neural networks to a multiclass classification problem in a structured and interpretable way.
+- GitHub: [adiratna89](https://github.com/adiratna89)
+- LinkedIn: [linkedin.com/in/adiratna-kamble](https://www.linkedin.com/in/adiratna-kamble)
+
+This project is part of my ongoing practice in Machine Learning and Neural Networks, as well as improving how I present projects on GitHub.
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.  
+You are welcome to use or refer to this repository for learning purposes.
