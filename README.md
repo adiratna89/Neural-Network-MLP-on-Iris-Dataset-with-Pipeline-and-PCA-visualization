@@ -201,7 +201,6 @@ The PCA scatter plot projects the dataset into two principal components for visu
   <img src="Output_images/PCA%20visualization%20of%20Iris%20Dataset.png" alt="PCA Visualization of Iris Dataset" width="420"/>
 </p>
 
-
 ### Quick Interpretation
 
 - **Setosa** appears clearly separated from the other two classes.
@@ -259,13 +258,11 @@ pip install numpy pandas matplotlib seaborn scikit-learn notebook
 ```bash
 jupyter notebook
 ```
-
 Then open:
 
 ```bash
 Neural Network - MLP on Iris with PCA visualization and Pipeline.ipynb
 ```
-
 ---
 
 ## 📁 Repository Structure
